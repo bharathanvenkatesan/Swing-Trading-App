@@ -1,0 +1,22 @@
+{% extends "base.html" %}{% block title %}Swing Desk · Dashboard{% endblock %}
+{% block content %}
+<div class="pagehead"><div><div class="eyebrow">MARKET RESEARCH WORKSPACE</div><h1>Good day, {{ user.display_name.split(' ')[0] }}</h1><p class="muted">Your research, watchlist and portfolio overview.</p></div><a class="button secondary" href="/settings">Configure connections</a></div>
+<div id="modeBanner" class="notice warning">Loading market data mode…</div>
+<div class="grid four">
+<div class="metric"><span>Watchlist</span><strong id="watchCount">—</strong><small>Saved symbols</small></div>
+<div class="metric"><span>Portfolio holdings</span><strong id="holdingCount">—</strong><small>Across connected brokers</small></div>
+<div class="metric"><span>Research status</span><strong>Setup</strong><small>Connect data providers</small></div>
+<div class="metric"><span>AI research</span><strong>Not configured</strong><small>Gemini / Groq</small></div>
+</div>
+<section class="panel"><div class="panelhead"><div><h2>Market snapshot</h2><p class="muted">Sample data is clearly labelled until a live market-data connection is configured.</p></div><span class="tag">Overview</span></div>
+<div class="tablewrap"><table><thead><tr><th>Symbol</th><th>Company</th><th>Price</th><th>Change</th><th>Source</th></tr></thead><tbody id="snapshotRows"><tr><td colspan="5">Loading…</td></tr></tbody></table></div></section>
+<div class="grid two">
+<section class="panel"><div class="panelhead"><div><h2>My watchlist</h2><p class="muted">Your symbols are private to your account.</p></div></div>
+<div class="inlineform"><input id="watchSymbol" placeholder="NSE symbol, e.g. INFY"><button class="primary" onclick="addWatch()">Add</button></div><ul id="watchRows" class="cleanlist"></ul></section>
+<section class="panel"><div class="panelhead"><div><h2>Portfolio intelligence</h2><p class="muted">Broker sync and risk analysis will appear here.</p></div></div>
+<div id="holdRows" class="empty">No holdings synced yet. Connect a broker in Settings to get started.</div></section>
+</div>
+<section class="panel roadmap"><h2>Research modules</h2><div class="modulegrid">
+<div><b>Nifty 500 Scanner</b><small>Explainable rankings and data confidence</small></div><div><b>ETF Scanner</b><small>Trend, liquidity and relative strength</small></div><div><b>Stock Research</b><small>Fundamentals, news and rally risk</small></div><div><b>Backtesting</b><small>Target/stop outcomes and costs</small></div><div><b>AI Research Agents</b><small>Evidence-led research with approval</small></div><div><b>Trade Journal</b><small>Decisions and outcome tracking</small></div>
+</div><p class="muted footnote">These are planned modules in this initial foundation; they are not represented as operational yet.</p></section>
+{% endblock %}

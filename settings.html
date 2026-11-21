@@ -1,0 +1,15 @@
+{% extends "base.html" %}{% block title %}Swing Desk · Settings{% endblock %}
+{% block content %}
+<div class="pagehead"><div><div class="eyebrow">WORKSPACE CONFIGURATION</div><h1>Settings & Connections</h1><p class="muted">Credentials are encrypted on the server and are never returned in full to the browser.</p></div><a class="button secondary" href="/">Back to dashboard</a></div>
+<div class="grid two">
+<section class="panel"><h2>AI providers</h2><p class="muted">Gemini is primary. Groq is the fallback provider.</p>
+<div class="field"><label>Gemini API key</label><div class="secretrow"><input id="gemini_api_key" type="password" placeholder="Paste Gemini API key"><button onclick="saveSecret('gemini_api_key')">Save</button></div><small id="gemini_api_key_status"></small></div>
+<div class="field"><label>Groq API key</label><div class="secretrow"><input id="groq_api_key" type="password" placeholder="Paste Groq API key"><button onclick="saveSecret('groq_api_key')">Save</button></div><small id="groq_api_key_status"></small></div>
+</section>
+<section class="panel"><h2>Broker connections</h2><p class="muted">Start with Upstox market-data access. Zerodha OAuth and portfolio sync will be added in the broker integration phase.</p>
+<div class="field"><label>Upstox access token</label><div class="secretrow"><input id="upstox_access_token" type="password" placeholder="Paste access token"><button onclick="saveSecret('upstox_access_token')">Save</button></div><small id="upstox_access_token_status"></small></div>
+<div class="actions"><button class="secondary" onclick="testUpstox()">Test Upstox connection</button><button class="danger" onclick="removeSecret('upstox_access_token')">Disconnect</button></div><p id="upstoxResult" class="muted"></p>
+</section>
+</div>
+<div class="notice warning">Security: use HTTPS in deployment, set a strong SECRET_KEY and CREDENTIAL_ENCRYPTION_KEY, and never share credentials in chat or upload them in project files. Losing the encryption key makes saved credentials unrecoverable.</div>
+{% endblock %}

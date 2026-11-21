@@ -1,0 +1,15 @@
+{% extends "base.html" %}{% block title %}Swing Desk · Account{% endblock %}
+{% block content %}
+<section class="authcard">
+<div class="eyebrow">PRIVATE TRADING RESEARCH WORKSPACE</div>
+<h1>{% if mode=="setup" %}Create your owner account{% else %}Welcome back{% endif %}</h1>
+<p class="muted">{% if mode=="setup" %}This first account becomes the workspace owner.{% else %}Sign in to your Swing Desk workspace.{% endif %}</p>
+<form method="post" class="stack">
+{% if mode=="setup" %}<label>Your name<input name="name" required autocomplete="name"></label>{% endif %}
+<label>Email<input type="email" name="email" required autocomplete="email"></label>
+<label>Password<input type="password" name="password" required minlength="{% if mode=='setup' %}12{% else %}1{% endif %}" autocomplete="{% if mode=='setup' %}new-password{% else %}current-password{% endif %}"></label>
+<button class="primary">{% if mode=="setup" %}Create workspace{% else %}Sign in{% endif %}</button>
+</form>
+{% if mode=="login" and not has_users %}<p><a href="/setup">Create first account</a></p>{% endif %}
+</section>
+{% endblock %}

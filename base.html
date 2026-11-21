@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}Swing Desk{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head><body>
+{% if current_user.is_authenticated %}
+<header class="topbar"><a class="brand" href="/">SWING<span>DESK</span></a>
+<nav><a href="/">Dashboard</a><a href="/settings">Settings & Connections</a></nav>
+<div class="userbox">{{ current_user.display_name }} <form method="post" action="/logout"><button class="linkbtn">Sign out</button></form></div>
+</header>
+{% endif %}
+<main class="container">
+{% with messages = get_flashed_messages(with_categories=true) %}{% for category,message in messages %}
+<div class="notice {{ category }}">{{ message }}</div>{% endfor %}{% endwith %}
+{% block content %}{% endblock %}
+</main>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body></html>
